@@ -1,6 +1,21 @@
-import { Text } from './src/components/Text';
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { KeyboardProvider } from "react-native-keyboard-controller";
+import { ThemeProvider } from "@shopify/restyle";
+import { theme } from "./src/theme/theme";
+import { LoginScreen } from "./src/screens/auth/LoginScreen/LoginScreen";
+import { SignUpScreen } from "./src/screens/auth/SignUpScreen/SignUpScreen";
 
 function App() {
-  return <Text>Teste</Text>;
+  return (
+    <KeyboardProvider>
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
+          {/* <LoginScreen /> */}
+
+          <SignUpScreen />
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </KeyboardProvider>
+  );
 }
 export default App;
