@@ -1,18 +1,29 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Box } from "../Box";
+import { Box, TouchableOpacityBox } from "../Box";
 import Icon from "../Icon";
 import { Text } from "../Text";
 import { Platform, ScrollView } from "react-native";
 import { KeyboardAvoidingView } from "react-native-keyboard-controller";
+import { useNavigation } from "@react-navigation/native";
+
+import type { ThemeColors } from "../../theme/theme";
+import { useAppTheme } from "../../hooks/useAppTheme";
 
 interface ScreenProps {
   children: React.ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
+  backgroundColor?: ThemeColors;
 }
-export function Screen({ children, canGoBack = false, scrollable = false }: ScreenProps) {
+export function Screen({ children, canGoBack = false, scrollable = false, backgroundColor = "grayWhite" }: ScreenProps) {
+  const navigation = useNavigation();
+
+  const { colors } = useAppTheme();
+
+  const backgroundStyle = backgroundColor ? colors[backgroundColor] : colors.grayWhite;
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: backgroundStyle }}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}>
@@ -22,9 +33,11 @@ export function Screen({ children, canGoBack = false, scrollable = false }: Scre
           keyboardShouldPersistTaps="handled">
           <Box
             paddingHorizontal="s24"
-            pb="s24">
+            pb="s24"
+            pt="s24">
             {canGoBack && (
-              <Box
+              <TouchableOpacityBox
+                onPress={navigation.goBack}
                 flexDirection="row"
                 alignItems="center"
                 mb="s24">
@@ -38,7 +51,7 @@ export function Screen({ children, canGoBack = false, scrollable = false }: Scre
                   ml="s8">
                   Voltar
                 </Text>
-              </Box>
+              </TouchableOpacityBox>
             )}
             {children}
           </Box>

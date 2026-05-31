@@ -3,8 +3,15 @@ import Button from "../../../components/Button";
 import Icon from "../../../components/Icon";
 import { TextInput } from "../../../components/TextIput/TextInput";
 import { Screen } from "../../../components/Screen/Screen";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { RootStackParamList } from "../../../routes/Router/Router";
 
-export function LoginScreen() {
+type LoginScreenProps = NativeStackScreenProps<RootStackParamList, "LoginScreen">;
+
+export function LoginScreen({ navigation }: LoginScreenProps) {
+  function navigateToSignUpScreen() {
+    navigation.navigate("SignUpScreen");
+  }
   return (
     <Screen>
       <Text
@@ -21,7 +28,6 @@ export function LoginScreen() {
       <TextInput
         label="E-mail"
         placeholder="Digite seu e-mail"
-        errorMessage="mensagem de erro..."
       />
 
       <TextInput
@@ -45,6 +51,7 @@ export function LoginScreen() {
         title="Criar uma conta"
         preset="outline"
         mt="s12"
+        onPress={navigateToSignUpScreen}
       />
     </Screen>
   );
