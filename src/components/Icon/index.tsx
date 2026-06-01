@@ -39,6 +39,11 @@ import SearchIcon from "../../assets/icons/SearchIcon";
 import SendIcon from "../../assets/icons/SendIcon";
 import SettingsIcon from "../../assets/icons/SettingsIcon";
 import TrashIcon from "../../assets/icons/TrashIcon";
+import MessageRoundIcon from "../../assets/icons/MessageRoundIcon";
+import MessageRoundLightIcon from "../../assets/icons/MessageRoundLightIcon";
+import ErrorRoundIcon from "../../assets/icons/ErrorRoundIcon";
+import CheckRoundIcon from "../../assets/icons/CheckRoundIcon";
+
 import { Pressable } from "react-native";
 
 export type IconBase = {
@@ -46,7 +51,7 @@ export type IconBase = {
   color?: string;
 };
 
-type IconProps = {
+export type IconProps = {
   name: IconNames;
   color?: ThemeColors;
   size?: number;
@@ -117,6 +122,10 @@ const iconRegistery = {
   send: SendIcon,
   settings: SettingsIcon,
   trash: TrashIcon,
+  messageRound: MessageRoundIcon,
+  messageRoundLight: MessageRoundLightIcon,
+  errorRound: ErrorRoundIcon,
+  checkRound: CheckRoundIcon,
 };
 
 export type IconTypes = typeof iconRegistery;

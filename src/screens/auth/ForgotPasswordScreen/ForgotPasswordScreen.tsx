@@ -1,22 +1,20 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Button from "../../../components/Button";
-import { PasswordInput } from "../../../components/PasswordInput/PasswordInput";
 import { Screen } from "../../../components/Screen/Screen";
 import { Text } from "../../../components/Text";
 import { TextInput } from "../../../components/TextIput/TextInput";
 import type { RootStackParamList } from "../../../routes/Router/Router";
 import { useResetNavigationSuccess } from "../../../hooks/useResetNavigationSuccess";
 
-type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, "SignUpScreen">;
+type ForgotPasswordScreenProps = NativeStackScreenProps<RootStackParamList, "ForgotPasswordScreen">;
 
-export function SignUpScreen({ navigation }: SignUpScreenProps) {
+export function ForgotPasswordScreen({ navigation }: ForgotPasswordScreenProps) {
   const { reset } = useResetNavigationSuccess();
-
   function handleSubmitForm() {
     reset({
-      title: "Sua conta foi criada com sucesso!",
-      description: "Agora é só fazer login na nossa plataforma.",
-      icon: { name: "checkRound", color: "success" },
+      title: "Enviamos as instruções para seu e-mail",
+      description: "Clique no link enviado no seu e-mail para recuperar sua senha",
+      icon: { name: "messageRound", color: "primary" },
     });
   }
   return (
@@ -27,20 +25,14 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
         preset="headingLarge"
         bold
         mb="s32">
-        Criar uma conta
+        Esqueci minha senha
       </Text>
 
-      <TextInput
-        label="Seu username"
-        placeholder="@"
-        boxProps={{ mb: "s20" }}
-      />
-
-      <TextInput
-        label="Nome Completo"
-        placeholder="Digite seu nome completo"
-        boxProps={{ mb: "s20" }}
-      />
+      <Text
+        preset="paragraphLarge"
+        mb="s32">
+        Digite seu e-mail e enviaremos as instruções para redefinição de senha
+      </Text>
 
       <TextInput
         label="Email"
@@ -48,14 +40,8 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
         boxProps={{ mb: "s20" }}
       />
 
-      <PasswordInput
-        label="Senha"
-        placeholder="Digite sua senha"
-        boxProps={{ mb: "s48" }}
-      />
-
       <Button
-        title="Criar uma conta"
+        title="Recuperar senha"
         onPress={handleSubmitForm}
       />
     </Screen>

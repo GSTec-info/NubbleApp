@@ -5,13 +5,19 @@ import { TextInput } from "../../../components/TextIput/TextInput";
 import { Screen } from "../../../components/Screen/Screen";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "../../../routes/Router/Router";
+import { Pressable } from "react-native";
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList, "LoginScreen">;
 
 export function LoginScreen({ navigation }: LoginScreenProps) {
+  function handleGoForgotPassword() {
+    navigation.navigate("ForgotPasswordScreen");
+  }
+
   function navigateToSignUpScreen() {
     navigation.navigate("SignUpScreen");
   }
+
   return (
     <Screen>
       <Text
@@ -35,12 +41,14 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
         placeholder="Digite sua senha"
         RightIcon={<Icon name="eyeOn" />}
       />
-      <Text
-        preset="paragraphSmall"
-        color="primary"
-        bold>
-        Esqueci minha senha
-      </Text>
+      <Pressable onPress={handleGoForgotPassword}>
+        <Text
+          preset="paragraphSmall"
+          color="primary"
+          bold>
+          Esqueci minha senha
+        </Text>
+      </Pressable>
 
       <Button
         title="Entrar"
