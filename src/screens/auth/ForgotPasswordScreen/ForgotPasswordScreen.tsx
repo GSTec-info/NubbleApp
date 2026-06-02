@@ -10,7 +10,7 @@ type ForgotPasswordScreenProps = NativeStackScreenProps<RootStackParamList, "For
 
 export function ForgotPasswordScreen({ navigation }: ForgotPasswordScreenProps) {
   const { reset } = useResetNavigationSuccess();
-  function handleSubmitForm() {
+  function submitForm() {
     reset({
       title: "Enviamos as instruções para seu e-mail",
       description: "Clique no link enviado no seu e-mail para recuperar sua senha",
@@ -42,7 +42,7 @@ export function ForgotPasswordScreen({ navigation }: ForgotPasswordScreenProps) 
 
       <Button
         title="Recuperar senha"
-        onPress={handleSubmitForm}
+        onPress={submitForm}
       />
     </Screen>
   );
