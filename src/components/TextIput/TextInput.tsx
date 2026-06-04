@@ -37,6 +37,7 @@ export function TextInput({ label, errorMessage, RightIcon, boxProps, ...restRNT
             ref={refInput}
             style={$textInputStyle}
             placeholderTextColor={colors.gray2}
+            autoCapitalize="none"
             {...restRNTextInputProps}
           />
           {RightIcon && <Box ml="s16">{RightIcon}</Box>}

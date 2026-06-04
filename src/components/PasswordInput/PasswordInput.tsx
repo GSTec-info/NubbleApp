@@ -2,7 +2,7 @@ import { useState } from "react";
 import { type TextInputProps, TextInput } from "../TextIput/TextInput";
 import Icon from "../Icon";
 
-type PasswordInputProps = Omit<TextInputProps, "RightIcon">;
+export type PasswordInputProps = Omit<TextInputProps, "RightIcon">;
 
 export function PasswordInput(props: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);

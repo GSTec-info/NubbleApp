@@ -1,18 +1,36 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Button from "../../../components/Button";
-import { PasswordInput } from "../../../components/PasswordInput/PasswordInput";
 import { Screen } from "../../../components/Screen/Screen";
 import { Text } from "../../../components/Text";
-import { TextInput } from "../../../components/TextIput/TextInput";
 import type { RootStackParamList } from "../../../routes/Router/Router";
 import { useResetNavigationSuccess } from "../../../hooks/useResetNavigationSuccess";
+import { FormTextInput } from "../../../components/Form/FormTextInput";
+import { useForm } from "react-hook-form";
+import { FormPasswordInput } from "../../../components/Form/FormPasswordInput";
+
+type SignUpFormProps = {
+  username: string;
+  fullName: string;
+  email: string;
+  password: string;
+};
 
 type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, "SignUpScreen">;
 
 export function SignUpScreen({ navigation }: SignUpScreenProps) {
   const { reset } = useResetNavigationSuccess();
 
-  function handleSubmitForm() {
+  const { control, formState, handleSubmit } = useForm<SignUpFormProps>({
+    defaultValues: {
+      username: "",
+      fullName: "",
+      email: "",
+      password: "",
+    },
+    mode: "onChange",
+  });
+
+  function onSubmit() {
     reset({
       title: "Sua conta foi criada com sucesso!",
       description: "Agora é só fazer login na nossa plataforma.",
@@ -30,33 +48,61 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
         Criar uma conta
       </Text>
 
-      <TextInput
+      <FormTextInput
+        control={control}
+        name="username"
         label="Seu username"
         placeholder="@"
         boxProps={{ mb: "s20" }}
       />
 
-      <TextInput
+      <FormTextInput
+        control={control}
+        name="fullName"
         label="Nome Completo"
         placeholder="Digite seu nome completo"
         boxProps={{ mb: "s20" }}
+        autoCapitalize="words"
       />
 
-      <TextInput
+      <FormTextInput
+        control={control}
+        name="email"
+        rules={{
+          required: "Campo obrigatório",
+          pattern: {
+            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            message: "E-mail inválido",
+          },
+        }}
         label="Email"
         placeholder="Digite seu e-mail"
         boxProps={{ mb: "s20" }}
       />
 
-      <PasswordInput
+      <FormPasswordInput
+        control={control}
+        name="password"
+        rules={{
+          required: "Campo obrigatório",
+          minLength: {
+            value: 8,
+            message: "Deve ter pelo menos 8 caracteres",
+          },
+          pattern: {
+            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            message: "Deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial",
+          },
+        }}
         label="Senha"
         placeholder="Digite sua senha"
         boxProps={{ mb: "s48" }}
       />
 
       <Button
+        disabled={!formState.isValid}
         title="Criar uma conta"
-        onPress={handleSubmitForm}
+        onPress={handleSubmit(onSubmit)}
       />
     </Screen>
   );
