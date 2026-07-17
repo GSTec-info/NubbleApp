@@ -7,13 +7,9 @@ import { useResetNavigationSuccess } from "../../../hooks/useResetNavigationSucc
 import { FormTextInput } from "../../../components/Form/FormTextInput";
 import { useForm } from "react-hook-form";
 import { FormPasswordInput } from "../../../components/Form/FormPasswordInput";
-
-type SignUpFormProps = {
-  username: string;
-  fullName: string;
-  email: string;
-  password: string;
-};
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signUpSchema } from "./SignUpSchema";
+import type { SignUpFormProps } from "./SignUpSchema";
 
 type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, "SignUpScreen">;
 
@@ -21,6 +17,7 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
   const { reset } = useResetNavigationSuccess();
 
   const { control, formState, handleSubmit } = useForm<SignUpFormProps>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       username: "",
       fullName: "",
@@ -68,13 +65,6 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
       <FormTextInput
         control={control}
         name="email"
-        rules={{
-          required: "Campo obrigatório",
-          pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: "E-mail inválido",
-          },
-        }}
         label="Email"
         placeholder="Digite seu e-mail"
         boxProps={{ mb: "s20" }}
@@ -83,17 +73,6 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
       <FormPasswordInput
         control={control}
         name="password"
-        rules={{
-          required: "Campo obrigatório",
-          minLength: {
-            value: 8,
-            message: "Deve ter pelo menos 8 caracteres",
-          },
-          pattern: {
-            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-            message: "Deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial",
-          },
-        }}
         label="Senha"
         placeholder="Digite sua senha"
         boxProps={{ mb: "s48" }}
