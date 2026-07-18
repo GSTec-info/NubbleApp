@@ -9,14 +9,14 @@ import { useForm } from "react-hook-form";
 import { FormPasswordInput } from "../../../components/Form/FormPasswordInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema } from "./SignUpSchema";
-import type { SignUpFormProps } from "./SignUpSchema";
+import type { SignUpSchema } from "./SignUpSchema";
 
 type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, "SignUpScreen">;
 
 export function SignUpScreen({ navigation }: SignUpScreenProps) {
   const { reset } = useResetNavigationSuccess();
 
-  const { control, formState, handleSubmit } = useForm<SignUpFormProps>({
+  const { control, formState, handleSubmit } = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       username: "",

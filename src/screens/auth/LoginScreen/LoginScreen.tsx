@@ -3,18 +3,17 @@ import Button from "../../../components/Button";
 import { Screen } from "../../../components/Screen/Screen";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "../../../routes/Router/Router";
-import { Pressable } from "react-native";
+import { Alert, Pressable } from "react-native";
 
 import { useForm } from "react-hook-form";
 import { FormTextInput } from "../../../components/Form/FormTextInput";
 import { FormPasswordInput } from "../../../components/Form/FormPasswordInput";
 
-type LoginScreenProps = NativeStackScreenProps<RootStackParamList, "LoginScreen">;
+import { loginSchema } from "./LoginSchema";
+import type { LoginSchema } from "./LoginSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export type LoginFormType = {
-  email: string;
-  password: string;
-};
+type LoginScreenProps = NativeStackScreenProps<RootStackParamList, "LoginScreen">;
 
 export function LoginScreen({ navigation }: LoginScreenProps) {
   function handleGoForgotPassword() {
@@ -25,11 +24,12 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
     navigation.navigate("SignUpScreen");
   }
 
-  function onSubmit({ email, password }: LoginFormType) {
-    console.log(email, password);
+  function onSubmit({ email, password }: LoginSchema) {
+    Alert.alert(email, password);
   }
 
-  const { control, formState, handleSubmit } = useForm<LoginFormType>({
+  const { control, formState, handleSubmit } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -53,13 +53,6 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
       <FormTextInput
         control={control}
         name="email"
-        rules={{
-          required: "Campo obrigatório",
-          pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: "E-mail inválido",
-          },
-        }}
         label="E-mail"
         placeholder="Digite seu e-mail"
         boxProps={{ mb: "s20" }}
@@ -68,17 +61,6 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
       <FormPasswordInput
         control={control}
         name="password"
-        rules={{
-          required: "Campo obrigatório",
-          minLength: {
-            value: 8,
-            message: "Deve ter pelo menos 8 caracteres",
-          },
-          pattern: {
-            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-            message: "Deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial",
-          },
-        }}
         label="Senha"
         placeholder="Digite sua senha"
         boxProps={{ mb: "s20" }}
