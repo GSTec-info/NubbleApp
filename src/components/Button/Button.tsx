@@ -1,12 +1,7 @@
-import { Text } from "../Text";
-import { TouchableOpacityBox } from "../Box";
-
-import type { TouchableOpacityBoxProps } from "../Box";
-
-import ActivityIndicator from "../ActivityIndicator";
-
-import { buttonPresets } from "./buttonPresets";
+import type { TouchableOpacityBoxProps } from "@components";
+import { ActivityIndicator, Text, TouchableOpacityBox } from "@components";
 import type { ButtonPreset } from "./buttonPresets";
+import { buttonPresets } from "./buttonPresets";
 
 interface ButtonProps extends TouchableOpacityBoxProps {
   title: string;
@@ -15,7 +10,7 @@ interface ButtonProps extends TouchableOpacityBoxProps {
   disabled?: boolean;
 }
 
-export default function Button({ title, loading, preset = "primary", disabled, ...touchableOpacityBoxProps }: ButtonProps) {
+export function Button({ title, loading, preset = "primary", disabled, ...touchableOpacityBoxProps }: ButtonProps) {
   const buttonUI = buttonPresets[preset][disabled ? "disabled" : "default"];
 
   return (

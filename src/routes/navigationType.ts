@@ -1,4 +1,4 @@
-import type { RootStackParamList } from "./Router/Router";
+import type { RootStackParamList } from "@routes";
 
 declare global {
   namespace ReactNavigation {

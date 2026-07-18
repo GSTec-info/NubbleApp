@@ -1,9 +1,10 @@
-import { Pressable, TextInput as RNTextInput } from "react-native";
-import type { TextInputProps as RNTextInputProps, TextStyle } from "react-native";
-import { Box, type BoxProps } from "../Box";
-import { Text, $fontFamily, $fontSizes } from "../Text";
+import { useAppTheme } from "@hooks";
 import { useRef } from "react";
-import { useAppTheme } from "../../hooks/useAppTheme";
+import type { TextInputProps as RNTextInputProps, TextStyle } from "react-native";
+import { Pressable, TextInput as RNTextInput } from "react-native";
+import type { BoxProps } from "../Box/Box";
+import { Box } from "../Box/Box";
+import { $fontFamily, $fontSizes, Text } from "../Text/Text";
 
 export interface TextInputProps extends RNTextInputProps {
   label: string;

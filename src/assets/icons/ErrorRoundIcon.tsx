@@ -1,5 +1,5 @@
 import { Svg, Path, Circle } from "react-native-svg";
-import type { IconBase } from "../../components/Icon";
+import type { IconBase } from "../../components/Icon/Icon";
 import { palette } from "../../theme/theme";
 
 export default function Icon({ size, color = palette.redError }: IconBase) {

@@ -3,5 +3,15 @@ module.exports = {
   plugins: [
     "@babel/plugin-transform-export-namespace-from",
     'react-native-worklets/plugin',
+    ["module-resolver", {
+      "root": ".",
+      "alias": {
+        "@components": "./src/components",
+        "@hooks": "./src/hooks",
+        "@routes": "./src/routes",
+        "@screens": "./src/screens",
+        "@theme": "./src/theme",
+      }
+    }]
   ]
 };

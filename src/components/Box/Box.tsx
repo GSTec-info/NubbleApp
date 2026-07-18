@@ -1,14 +1,11 @@
-import { TouchableOpacity } from "react-native";
-import type { TouchableOpacityProps } from "react-native";
-
-/*---- Componentes e funções -------*/
-import { createBox, createRestyleComponent, layout, spacing, spacingShorthand, border, backgroundColor, backgroundColorShorthand } from "@shopify/restyle";
-
 /*---- Tipagens -------*/
-import type { BackgroundColorProps, BackgroundColorShorthandProps, SpacingProps, SpacingShorthandProps, BorderProps, LayoutProps } from "@shopify/restyle";
-
+import type { BackgroundColorProps, BackgroundColorShorthandProps, BorderProps, LayoutProps, SpacingProps, SpacingShorthandProps } from "@shopify/restyle";
+/*---- Componentes e funções -------*/
+import { backgroundColor, backgroundColorShorthand, border, createBox, createRestyleComponent, layout, spacing, spacingShorthand } from "@shopify/restyle";
 /*---- Tema global -------*/
-import type { Theme } from "../../theme/theme";
+import type { Theme } from "@theme";
+import type { TouchableOpacityProps } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 /*---- Tipagem para botão personalizado -------*/
 export type TouchableOpacityBoxProps = BackgroundColorProps<Theme> & BackgroundColorShorthandProps<Theme> & SpacingProps<Theme> & SpacingShorthandProps<Theme> & BorderProps<Theme> & LayoutProps<Theme> & TouchableOpacityProps;

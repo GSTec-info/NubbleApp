@@ -1,5 +1,5 @@
-import { Svg, Path } from "react-native-svg";
-import type { IconBase } from "../../components/Icon";
+import { Path, Svg } from "react-native-svg";
+import type { IconBase } from "../../components/Icon/Icon";
 
 export default function ArrowLeftIcon({ size, color }: IconBase) {
   return (

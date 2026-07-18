@@ -1,13 +1,11 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Box, TouchableOpacityBox } from "../Box";
-import Icon from "../Icon";
-import { Text } from "../Text";
+import { Box, Icon, Text, TouchableOpacityBox } from "@components";
+import { useAppTheme } from "@hooks";
+import { useNavigation } from "@react-navigation/native";
+import type { ThemeColors } from "@theme";
 import { Platform } from "react-native";
 import { KeyboardAvoidingView } from "react-native-keyboard-controller";
-import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import type { ThemeColors } from "../../theme/theme";
-import { useAppTheme } from "../../hooks/useAppTheme";
 import { ScrollViewContainer, ViewContainer } from "./ScreenContainer";
 
 interface ScreenProps {

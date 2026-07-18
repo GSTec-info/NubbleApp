@@ -1,5 +1,5 @@
-import { Svg, Path, Rect } from "react-native-svg";
-import type { IconBase } from "../../components/Icon";
+import { Path, Rect, Svg } from "react-native-svg";
+import type { IconBase } from "../../components/Icon/Icon";
 
 export default function AppIcon({ size }: IconBase) {
   return (
