@@ -1,8 +1,8 @@
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { KeyboardProvider } from "react-native-keyboard-controller";
+import { Router } from "@routes";
 import { ThemeProvider } from "@shopify/restyle";
-import { theme } from "./src/theme/theme";
-import { Router } from "./src/routes/Router/Router";
+import { theme } from "@theme";
+import { KeyboardProvider } from "react-native-keyboard-controller";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 function App() {
   return (

@@ -1,14 +1,14 @@
 import { Button, FormPasswordInput, FormTextInput, Screen, Text } from "@components";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "@routes";
+
+import type { AuthScreenProps } from "@routes";
 
 import { useForm } from "react-hook-form";
 import { Alert, Pressable } from "react-native";
 import type { LoginSchema } from "./LoginSchema";
 import { loginSchema } from "./LoginSchema";
 
-type LoginScreenProps = NativeStackScreenProps<RootStackParamList, "LoginScreen">;
+type LoginScreenProps = AuthScreenProps<"LoginScreen">;
 
 export function LoginScreen({ navigation }: LoginScreenProps) {
   function handleGoForgotPassword() {

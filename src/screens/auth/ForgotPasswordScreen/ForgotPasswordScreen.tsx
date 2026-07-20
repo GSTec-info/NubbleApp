@@ -1,14 +1,14 @@
 import { Button, FormTextInput, Screen, Text } from "@components";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useResetNavigationSuccess } from "@hooks";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "@routes";
+
+import type { AuthScreenProps } from "@routes";
 import { useForm } from "react-hook-form";
 
 import type { ForgotPasswordSchema } from "./ForgotPasswordSchema";
 import { forgotPasswordSchema } from "./ForgotPasswordSchema";
 
-type ForgotPasswordScreenProps = NativeStackScreenProps<RootStackParamList, "ForgotPasswordScreen">;
+type ForgotPasswordScreenProps = AuthScreenProps<"ForgotPasswordScreen">;
 
 export function ForgotPasswordScreen({ navigation }: ForgotPasswordScreenProps) {
   const { reset } = useResetNavigationSuccess();
@@ -56,7 +56,7 @@ export function ForgotPasswordScreen({ navigation }: ForgotPasswordScreenProps) 
       <Button
         title="Recuperar senha"
         onPress={submitForm}
-        disabled={!formState}
+        disabled={!formState.isValid}
       />
     </Screen>
   );
