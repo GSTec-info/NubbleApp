@@ -1,4 +1,7 @@
+export * from "./app/FavoriteScreen/FavoriteScreen";
 export * from "./app/HomeScreen/HomeScreen";
+export * from "./app/MyProfileScreen/MyProfileScreen";
+export * from "./app/NewPostScreen/NewPostScreen";
 export * from "./app/SettingsScreen/SettingsScreen";
 
 export * from "./auth/ForgotPasswordScreen/ForgotPasswordScreen";

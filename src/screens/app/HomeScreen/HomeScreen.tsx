@@ -2,9 +2,9 @@ import { Button, Screen, Text } from "@components";
 
 import type { AppScreenProps } from "@routes";
 
-type HomeScreenScreenProps = AppScreenProps<"HomeScreen">;
+type HomeScreenProps = AppScreenProps<"HomeScreen">;
 
-export function HomeScreen({ navigation }: HomeScreenScreenProps) {
+export function HomeScreen({ navigation }: HomeScreenProps) {
   return (
     <Screen>
       <Text preset="headingLarge">HomeScreen</Text>
