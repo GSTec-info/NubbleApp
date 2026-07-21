@@ -1,10 +1,10 @@
-import { Box, Button, PostActions, PostHeader, PostImage, Screen, Text } from "@components";
+import { Box, PostItem, Screen } from "@components";
 import { type Post, postService } from "@domain";
 
 import type { AppTabScreenProps } from "@routes";
 
 import { useEffect, useState } from "react";
-import type { ListRenderItemInfo } from "react-native";
+import type { ListRenderItemInfo, StyleProp, ViewStyle } from "react-native";
 import { FlatList } from "react-native";
 
 type HomeScreenProps = AppTabScreenProps<"HomeScreen">;
@@ -18,20 +18,14 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
 
   function renderItem({ item }: ListRenderItemInfo<Post>) {
     return (
-      <Box marginBottom="s24">
-        <PostHeader author={item.author} />
-        <PostImage imageURL={item.imageURL} />
-        <PostActions
-          commentCount={item.commentCount}
-          favoriteCount={item.favoriteCount}
-          reactionCount={item.reactionCount}
-        />
+      <Box paddingHorizontal="s24">
+        <PostItem post={item} />
       </Box>
     );
   }
 
   return (
-    <Screen>
+    <Screen style={$styleScreen}>
       <FlatList
         data={postList}
         renderItem={renderItem}
@@ -40,3 +34,9 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
     </Screen>
   );
 }
+
+const $styleScreen: StyleProp<ViewStyle> = {
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingHorizontal: 0,
+};

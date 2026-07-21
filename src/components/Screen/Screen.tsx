@@ -1,5 +1,5 @@
-import { Box, Icon, Text, TouchableOpacityBox } from "@components";
-import { useAppTheme } from "@hooks";
+import { Box, type BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
+import { useAppSafeArea, useAppTheme } from "@hooks";
 import { useNavigation } from "@react-navigation/native";
 import type { ThemeColors } from "@theme";
 import { Platform } from "react-native";
@@ -8,14 +8,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ScrollViewContainer, ViewContainer } from "./ScreenContainer";
 
-interface ScreenProps {
+interface ScreenProps extends BoxProps {
   children: React.ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
   backgroundColor?: ThemeColors;
 }
-export function Screen({ children, canGoBack = false, scrollable = false, backgroundColor = "grayWhite" }: ScreenProps) {
+export function Screen({ children, canGoBack = false, scrollable = false, backgroundColor = "grayWhite", style, ...boxProps }: ScreenProps) {
   const navigation = useNavigation();
+
+  const { top, bottom } = useAppSafeArea();
 
   const { colors } = useAppTheme();
 
@@ -31,8 +33,8 @@ export function Screen({ children, canGoBack = false, scrollable = false, backgr
         <Container>
           <Box
             paddingHorizontal="s24"
-            pb="s24"
-            pt="s24">
+            style={[{ paddingTop: top, paddingBottom: bottom }, style]}
+            {...boxProps}>
             {canGoBack && (
               <TouchableOpacityBox
                 onPress={navigation.goBack}
