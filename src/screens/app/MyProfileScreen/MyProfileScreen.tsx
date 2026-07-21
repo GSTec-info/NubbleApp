@@ -1,8 +1,8 @@
 import { Screen, Text } from "@components";
 
-import type { AppScreenProps } from "@routes";
+import type { AppTabScreenProps } from "@routes";
 
-type MyProfileScreenProps = AppScreenProps<"MyProfileScreen">;
+type MyProfileScreenProps = AppTabScreenProps<"MyProfileScreen">;
 
 export function MyProfileScreen(props: MyProfileScreenProps) {
   return (

@@ -1,8 +1,8 @@
 import { Button, Screen, Text } from "@components";
 
-import type { AppScreenProps } from "@routes";
+import type { AppTabScreenProps } from "@routes";
 
-type HomeScreenProps = AppScreenProps<"HomeScreen">;
+type HomeScreenProps = AppTabScreenProps<"HomeScreen">;
 
 export function HomeScreen({ navigation }: HomeScreenProps) {
   return (

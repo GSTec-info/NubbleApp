@@ -1,8 +1,8 @@
 import { Screen, Text } from "@components";
 
-import type { AppScreenProps } from "@routes";
+import type { AppTabScreenProps } from "@routes";
 
-type NewPostScreenProps = AppScreenProps<"NewPostScreen">;
+type NewPostScreenProps = AppTabScreenProps<"NewPostScreen">;
 
 export function NewPostScreen(props: NewPostScreenProps) {
   return (
