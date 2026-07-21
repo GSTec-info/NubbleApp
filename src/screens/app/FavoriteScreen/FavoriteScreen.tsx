@@ -6,7 +6,7 @@ type FavoriteScreenProps = AppTabScreenProps<"FavoriteScreen">;
 
 export function FavoriteScreen({ navigation }: FavoriteScreenProps) {
   return (
-    <Screen canGoBack>
+    <Screen>
       <Text preset="headingLarge">FavoriteScreen</Text>
 
       <Button

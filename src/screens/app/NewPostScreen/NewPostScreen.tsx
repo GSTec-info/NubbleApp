@@ -6,7 +6,7 @@ type NewPostScreenProps = AppTabScreenProps<"NewPostScreen">;
 
 export function NewPostScreen(props: NewPostScreenProps) {
   return (
-    <Screen canGoBack>
+    <Screen>
       <Text preset="headingLarge">NewPostScreen</Text>
     </Screen>
   );
