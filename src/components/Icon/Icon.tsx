@@ -1,8 +1,7 @@
 import { useAppTheme } from "@hooks";
+import { opacity } from "@shopify/restyle";
 import type { ThemeColors } from "@theme";
-
 import { Pressable } from "react-native";
-
 import AppIcon from "../../assets/icons/AppIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import ArrowRightIcon from "../../assets/icons/ArrowRightIcon";
@@ -66,6 +65,7 @@ export function Icon({ name, color = "grayBlack", size, onPress }: IconProps) {
     return (
       <Pressable
         onPress={onPress}
+        style={({ pressed }) => (pressed ? { opacity: 0.5 } : { opacity: 1 })}
         hitSlop={10}>
         <SVGIcon
           size={size}

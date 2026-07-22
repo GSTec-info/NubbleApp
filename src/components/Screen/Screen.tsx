@@ -14,14 +14,14 @@ interface ScreenProps extends BoxProps {
   scrollable?: boolean;
   backgroundColor?: ThemeColors;
 }
-export function Screen({ children, canGoBack = false, scrollable = false, backgroundColor = "grayWhite", style, ...boxProps }: ScreenProps) {
+export function Screen({ children, canGoBack = false, scrollable = false, backgroundColor = "background", style, ...boxProps }: ScreenProps) {
   const navigation = useNavigation();
 
   const { top, bottom } = useAppSafeArea();
 
   const { colors } = useAppTheme();
 
-  const backgroundStyle = backgroundColor ? colors[backgroundColor] : colors.grayWhite;
+  const backgroundStyle = backgroundColor ? colors[backgroundColor] : colors.background;
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 

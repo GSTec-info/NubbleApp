@@ -17,7 +17,8 @@ export function PostHeader({ author }: Props) {
       <Text
         marginLeft="s12"
         semiBold
-        preset="paragraphMedium">
+        preset="paragraphMedium"
+        color="backgroundContrast">
         {author.name}
       </Text>
     </Box>

@@ -26,25 +26,29 @@ export function PostActions({ commentCount, favoriteCount, reactionCount }: Prop
           marked: "heartFill",
           color: "marked",
         }}
-        marked
+        marked={reactionCount > 0}
         onPress={likePost}
         text={reactionCount}
       />
       <ItemAction
         icon={{
           default: "comment",
-          marked: "comment",
+          marked: "chat",
+          color: "backgroundContrast",
         }}
         onPress={navigateToComment}
         text={commentCount}
+        marked={commentCount > 0}
       />
       <ItemAction
         icon={{
           default: "bookmark",
           marked: "bookmarkFill",
+          color: "backgroundContrast",
         }}
         onPress={favoritePost}
         text={favoriteCount}
+        marked={favoriteCount > 0}
       />
     </Box>
   );
@@ -74,6 +78,7 @@ function ItemAction({ icon, onPress, marked, text }: ItemActionProps) {
         <Text
           marginLeft="s4"
           preset="paragraphSmall"
+          color="backgroundContrast"
           bold>
           {text}
         </Text>

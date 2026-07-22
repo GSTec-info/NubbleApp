@@ -10,7 +10,8 @@ export function PostBottom({ author, text: textPost, commentCount }: Props) {
     <Box marginVertical="s16">
       <Text
         semiBold
-        preset="paragraphMedium">
+        preset="paragraphMedium"
+        color="backgroundContrast">
         {author.userName}
       </Text>
 
