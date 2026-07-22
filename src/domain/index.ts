@@ -1,2 +1,2 @@
-export * from './Posts/postService'
-export * from './Posts/types'
+export * from "./Posts/postService";
+export * from "./Posts/postTypes";
