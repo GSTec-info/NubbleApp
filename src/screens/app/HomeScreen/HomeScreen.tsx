@@ -6,6 +6,7 @@ import type { AppTabScreenProps } from "@routes";
 import { useEffect, useState } from "react";
 import type { ListRenderItemInfo, StyleProp, ViewStyle } from "react-native";
 import { FlatList } from "react-native";
+import { HomeHeader } from "./components/HomeHeader";
 
 type HomeScreenProps = AppTabScreenProps<"HomeScreen">;
 
@@ -30,6 +31,7 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         data={postList}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        ListHeaderComponent={HomeHeader}
       />
     </Screen>
   );
