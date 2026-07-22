@@ -7,13 +7,12 @@ export function HomeHeader() {
     <Box
       {...$boxWrapper}
       style={{ paddingTop: top }}>
-      <Box>
-        <Icon
-          name="logoSimples"
-          size={50}
-          color="backgroundContrast"
-        />
-      </Box>
+      <Icon
+        name="logoSimples"
+        size={70}
+        color="backgroundContrast"
+      />
+
       <Box
         flexDirection="row"
         gap="s24">
