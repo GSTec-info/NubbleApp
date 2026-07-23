@@ -1,7 +1,6 @@
-import type { PageAPI } from "@api";
+import { api, type PageAPI } from "@api";
 import type { PostAPI } from "./postTypes";
 
-const URL_API = "http://192.168.18.113:3333";
 const USERNAME_TEST = "mariajulia@coffstack.com";
 const PASSWORD_TEST = "supersecret";
 
@@ -9,30 +8,19 @@ type ResponseAPI = PageAPI<PostAPI>;
 
 async function getList(): Promise<ResponseAPI | null> {
   try {
-    const login = await fetch(`${URL_API}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: USERNAME_TEST,
-        password: PASSWORD_TEST,
-        rememberMe: true,
-      }),
+    const responseLogin = await api.post(`auth/login`, {
+      email: USERNAME_TEST,
+      password: PASSWORD_TEST,
+      rememberMe: true,
     });
 
-    const tokenLogin = (await login.json()).auth.token;
-
-    const response = await fetch(`${URL_API}/user/post`, {
-      method: "GET",
+    const responsePost = await api.get<PageAPI<PostAPI>>(`user/post`, {
       headers: {
-        Authorization: `Bearer ${tokenLogin}`,
+        Authorization: `Bearer ${responseLogin.data.auth.token}`,
       },
     });
 
-    const data: ResponseAPI = await response.json();
-
-    return data;
+    return responsePost.data;
   } catch (err) {
     console.log("=== ERRO EM 'getList': ", err);
     return null;
