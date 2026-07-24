@@ -7,7 +7,12 @@ interface ActivityIndicatorProps extends Omit<RNActivityIndicatorProps, "color">
   color?: ThemeColors;
 }
 
-export function ActivityIndicator({ color = "primary" }: ActivityIndicatorProps) {
+export function ActivityIndicator({ color = "primary", ...activityIndicatorProps }: ActivityIndicatorProps) {
   const { colors } = useTheme<Theme>();
-  return <RNActivityIndicator color={colors[color]} />;
+  return (
+    <RNActivityIndicator
+      color={colors[color]}
+      {...activityIndicatorProps}
+    />
+  );
 }
