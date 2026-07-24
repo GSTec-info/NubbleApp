@@ -11,7 +11,7 @@ import { HomeHeader } from "./components/HomeHeader";
 type HomeScreenProps = AppTabScreenProps<"HomeScreen">;
 
 export function HomeScreen({ navigation }: HomeScreenProps) {
-  const { loading, error, postList, refetch } = usePostList();
+  const { loading, error, postList, refetch, fetchNextPage } = usePostList();
 
   function renderItem({ item }: ListRenderItemInfo<Post>) {
     return (
@@ -29,6 +29,8 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         renderItem={renderItem}
         contentContainerStyle={{ flex: postList.length === 0 ? 1 : undefined }}
         keyExtractor={(item) => item.id}
+        onEndReached={fetchNextPage}
+        onEndReachedThreshold={0.1}
         ListHeaderComponent={HomeHeader}
         ListEmptyComponent={
           <HomeEmpty
