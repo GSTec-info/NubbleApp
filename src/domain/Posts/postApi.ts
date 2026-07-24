@@ -6,7 +6,7 @@ const PASSWORD_TEST = "supersecret";
 
 type ResponseAPI = PageAPI<PostAPI>;
 
-async function getList(): Promise<ResponseAPI | null> {
+async function getList(): Promise<ResponseAPI> {
   try {
     const responseLogin = await api.post(`auth/login`, {
       email: USERNAME_TEST,
@@ -20,10 +20,14 @@ async function getList(): Promise<ResponseAPI | null> {
       },
     });
 
+    // await new Promise((resolve) => setTimeout(() => resolve(""), 5000));
+
+    // throw new Error("Erro de test");
+
     return responsePost.data;
   } catch (err) {
     console.log("=== ERRO EM 'getList': ", err);
-    return null;
+    return {} as ResponseAPI;
   }
 }
 
